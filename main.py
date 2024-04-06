@@ -39,4 +39,4 @@ agent = ReActAgent.from_tools(tools, llm=llm, verbose=True, context=context)
 # walrus operator :=
 while (prompt := input("Enter a prompt (q to quit): ")) != "q":
     result = agent.query(prompt)
-    print(result)
+    # print(result)
