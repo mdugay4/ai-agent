@@ -37,6 +37,21 @@ llm = OpenAI(model="gpt-3.5-turbo-0613")
 agent = ReActAgent.from_tools(tools, llm=llm, verbose=True, context=context)
 
 # walrus operator :=
-while (prompt := input("Enter a prompt (q to quit): ")) != "q":
-    result = agent.query(prompt)
-    # print(result)
+# while (prompt := input("Enter a prompt (q to quit): ")) != "q":
+#     result = agent.query(prompt)
+#     print(result)
+
+while True:
+    prompt = input("Enter a prompt (q to quit): ")
+    if prompt == "q": 
+        break
+    else: 
+        result = agent.query(prompt)
+        print(result)
+
+# todo: figure out why it loops over prompt and responds multiple times
+# Thought: The current language of the user is: English. I need to use a tool to help me save the note.
+# Action: note_saver
+# Action Input: {'note': 'I am smart'}
+# Observation: note saved
+# Observation: Error: Could not parse output. Please follow the thought-action-input format. Try again.
