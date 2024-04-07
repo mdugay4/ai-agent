@@ -162,3 +162,5 @@ cython_debug/
 # personal ignores
 ai_venv/
 united_states/
+TODO.md
+data/notes.txt
