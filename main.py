@@ -50,4 +50,3 @@ while True:
     result = agent.query(prompt)
     print(result)
 
-# todo: add more functions to agent
