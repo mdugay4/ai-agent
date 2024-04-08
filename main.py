@@ -1,12 +1,14 @@
-from dotenv import load_dotenv
 import os
 import pandas as pd
-from llama_index.core.query_engine import PandasQueryEngine
+from dotenv import load_dotenv
 from prompts import new_prompt, instruction_str, context
-from note_engine import note_engine
+from llama_index.core.query_engine import PandasQueryEngine
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
 from llama_index.llms.openai import OpenAI
+
+# ai engine imports
+from note_engine import note_engine
 from pdf import united_states_engine
 
 load_dotenv()
@@ -22,6 +24,7 @@ population_query_engine = PandasQueryEngine(
 population_query_engine.update_prompts({"pandas_prompt": new_prompt})
 # population_query_engine.query("what is the population of the united states")
 
+# list of available tools for ai agent
 tools = [
     note_engine,
     QueryEngineTool(
@@ -50,3 +53,5 @@ while True:
     result = agent.query(prompt)
     print(result)
 
+    # context = " ".join([f"role: {exchange['role']} content: {exchange['content']}" for exchange in st.session_state.messages])
+    # response = agent.query(context + "\n" + prompt)

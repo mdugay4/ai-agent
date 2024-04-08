@@ -1,5 +1,5 @@
-from llama_index.core.tools import FunctionTool
 import os
+from llama_index.core.tools import FunctionTool
 
 note_file = os.path.join("data", "notes.txt")
 
