@@ -10,6 +10,7 @@ from llama_index.llms.openai import OpenAI
 # ai engine imports
 from note_engine import clear_note_engine, save_note_engine
 from pdf_engine import united_states_engine
+from tft_patch_engine import tft_patch_engine
 
 load_dotenv()
 
@@ -18,7 +19,7 @@ population_df = pd.read_csv(population_path)
 
 # print(population_df.head())
 population_query_engine = PandasQueryEngine(
-    df=population_df, verbose=True, instruction_str=instruction_str
+    df=population_df, verbose=False, instruction_str=instruction_str
 )
 
 population_query_engine.update_prompts({"pandas_prompt": new_prompt})
@@ -28,6 +29,13 @@ population_query_engine.update_prompts({"pandas_prompt": new_prompt})
 tools = [
     save_note_engine,
     clear_note_engine,
+    QueryEngineTool(
+        query_engine=tft_patch_engine, 
+        metadata=ToolMetadata(
+            name="tft_patch_data",
+            description="this gives information about tft patch updates"
+        ),
+    ),
     QueryEngineTool(
         query_engine=population_query_engine, 
         metadata=ToolMetadata(
@@ -45,7 +53,7 @@ tools = [
 ]
 
 llm = OpenAI(model="gpt-3.5-turbo-0613")
-agent = ReActAgent.from_tools(tools, llm=llm, verbose=True, context=context)
+agent = ReActAgent.from_tools(tools, llm=llm, verbose=False, context=context)
 
 while True:
     prompt = input("\nEnter a prompt (q to quit): ")

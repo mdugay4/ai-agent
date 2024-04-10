@@ -14,10 +14,8 @@ documents = SimpleWebPageReader(html_to_text=True).load_data(
     ["https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-14-7-notes/"],
 )
 
-# documents[0]
-
-index = SummaryIndex.from_documents(documents)
+tft_patch_index = SummaryIndex.from_documents(documents)
 # set Logging to DEBUG for more detailed outputs
-query_engine = index.as_query_engine()
-response = query_engine.query("What augments did they change?")
-print(response)
+tft_patch_engine = tft_patch_index.as_query_engine()
+# response = tft_patch_engine.query("What augments did they change?")
+# print(response)
