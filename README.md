@@ -6,6 +6,7 @@
 
 <!--
     command to activate virtual environment (in powershell)
+    /ai_venv/Scripts/activate
     ./[virtual-environment-name]/../path-to-activate-script
 -->
 
@@ -18,4 +19,6 @@
     how to run main.py
     1) make sure ai_venv is active
     2) using powershell: python main.py
+    3) if issues activating venv run the following in terminal:
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 -->

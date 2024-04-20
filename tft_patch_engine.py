@@ -11,7 +11,7 @@ load_dotenv()
 # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
 documents = SimpleWebPageReader(html_to_text=True).load_data(
-    ["https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-14-7-notes/"],
+    ["https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-14-8-notes/"],
 )
 
 tft_patch_index = SummaryIndex.from_documents(documents)
